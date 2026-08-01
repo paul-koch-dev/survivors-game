@@ -3,7 +3,7 @@ name: "Deploy Web Version to GitHub Pages"
 on:
   push:
     branches:
-      - main  # Baut automatisch bei jedem Push auf den main-Branch
+      - main
 
 permissions:
   contents: read
@@ -21,7 +21,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 1. Godot Web Export ausführen
+      # 1. WICHTIG: Ordner VOR dem Export erstellen, damit Godot den Pfad vorfindet!
+      - name: Create Export Directory
+        run: mkdir -p build/web
+
+      # 2. Godot Web Export ausführen
       - name: Godot Web Export
         uses: firebelley/godot-export@v6.0.0
         with:
@@ -32,21 +36,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Godot 4 Fix: ServiceWorker injizieren (damit das Spiel im Browser lädt)
-     # 2. Godot 4 Fix: ServiceWorker injizieren (über unpkg CDN)
+      # 3. Godot 4 Fix: ServiceWorker für SharedArrayBuffer injizieren
       - name: Inject COOP/COEP ServiceWorker
         run: |
-          mkdir -p build/web
           curl -fsSL https://unpkg.com/coi-serviceworker/coi-serviceworker.js -o build/web/coi-serviceworker.js
           sed -i 's/<head>/<head><script src="coi-serviceworker.js"><\/script>/g' build/web/index.html
 
-      # 3. Artifact für GitHub Pages vorbereiten
+      # 4. Artifact für GitHub Pages hochladen
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
-      # 4. Auf GitHub Pages veröffentlichen
+      # 5. Auf GitHub Pages veröffentlichen
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
