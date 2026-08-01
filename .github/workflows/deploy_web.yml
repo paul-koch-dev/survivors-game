@@ -21,37 +21,38 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 1. Zielordner vorbereiten
-      - name: Create Export Directory
-        run: mkdir -p build/web
-
-      # 2. Godot Web Export ausführen
+      # 1. Godot Web Export ausführen
       - name: Godot Web Export
         id: export
         uses: firebelley/godot-export@v6.0.0
         with:
-          # HIER DIE KORREKTUR: godot-builds im Pfad
           godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
           relative_project_path: "./"
           presets_to_export: "Web"
-          use_preset_export_path: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 3. Godot 4 Fix: ServiceWorker für SharedArrayBuffer injizieren
+      # 2. Ordnerstruktur korrigieren & ServiceWorker injizieren
       - name: Inject COOP/COEP ServiceWorker
         run: |
+          # Falls die Dateien in build/web/Web gelandet sind, eine Ebene nach oben verschieben:
+          if [ -d "build/web/Web" ]; then
+            mv build/web/Web/* build/web/ 2>/dev/null || true
+            rm -rf build/web/Web
+          fi
+
+          # ServiceWorker herunterladen & injizieren
           curl -fsSL https://unpkg.com/coi-serviceworker/coi-serviceworker.js -o build/web/coi-serviceworker.js
           sed -i 's/<head>/<head><script src="coi-serviceworker.js"><\/script>/g' build/web/index.html
 
-      # 4. Artifact für GitHub Pages hochladen
+      # 3. Artifact für GitHub Pages hochladen
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: build/web
 
-      # 5. Auf GitHub Pages veröffentlichen
+      # 4. Auf GitHub Pages veröffentlichen
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
