@@ -21,7 +21,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 1. WICHTIG: Ordner VOR dem Export erstellen, damit Godot den Pfad vorfindet!
+      # 1. Zielordner anlegen
       - name: Create Export Directory
         run: mkdir -p build/web
 
@@ -32,7 +32,8 @@ jobs:
           godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
           relative_project_path: "./"
-          preset: "Web"
+          presets_to_export: "Web"      # <-- Korrekter Parameter-Name
+          use_preset_export_path: true  # <-- Nutzt exakt den Pfad aus deiner export_presets.cfg!
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
