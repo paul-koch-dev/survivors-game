@@ -33,11 +33,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # 2. Godot 4 Fix: ServiceWorker injizieren (damit das Spiel im Browser lädt)
+     # 2. Godot 4 Fix: ServiceWorker injizieren (über unpkg CDN)
       - name: Inject COOP/COEP ServiceWorker
         run: |
-          curl -fsSL https://raw.githubusercontent.com/gzguidotti/coi-serviceworker/main/coi-serviceworker.min.js -o build/web/coi-serviceworker.js
+          curl -fsSL https://unpkg.com/coi-serviceworker/coi-serviceworker.js -o build/web/coi-serviceworker.js
           sed -i 's/<head>/<head><script src="coi-serviceworker.js"><\/script>/g' build/web/index.html
-
+          
       # 3. Artifact für GitHub Pages vorbereiten
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3

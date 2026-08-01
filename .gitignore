@@ -1,0 +1,5 @@
+# Exporte und Build-Ausgaben ignorieren
+build/
+*.html
+*.wasm
+*.pck
