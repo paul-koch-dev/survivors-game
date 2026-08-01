@@ -33,18 +33,33 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # 2. Ordnerstruktur korrigieren & ServiceWorker injizieren
-      - name: Inject COOP/COEP ServiceWorker
+      # 2. Dateien finden, nach build/web verschieben & ServiceWorker injizieren
+      - name: Prepare Build & Inject ServiceWorker
         run: |
-          # Falls die Dateien in build/web/Web gelandet sind, eine Ebene nach oben verschieben:
-          if [ -d "build/web/Web" ]; then
-            mv build/web/Web/* build/web/ 2>/dev/null || true
-            rm -rf build/web/Web
+          # 1. Zielordner erzwingen
+          mkdir -p build/web
+
+          # 2. index.html im Workspace ODER im Godot-Cache suchen
+          INDEX_PATH=$(find . /home/runner/.local/share/godot/builds -name "index.html" 2>/dev/null | head -n 1)
+
+          if [ -z "$INDEX_PATH" ]; then
+            echo "❌ FEHLER: Keine index.html gefunden! Der Export hat nicht geklappt."
+            exit 1
           fi
 
-          # ServiceWorker herunterladen & injizieren
+          SOURCE_DIR=$(dirname "$INDEX_PATH")
+          echo "📁 Export-Dateien gefunden in: $SOURCE_DIR"
+
+          # 3. Falls die Dateien noch nicht in build/web liegen, rüberkopieren
+          if [ "$(realpath "$SOURCE_DIR")" != "$(realpath build/web)" ]; then
+            echo "🚚 Kopiere Spieldateien nach build/web..."
+            cp -r "$SOURCE_DIR"/* build/web/
+          fi
+
+          # 4. ServiceWorker herunterladen & injizieren
           curl -fsSL https://unpkg.com/coi-serviceworker/coi-serviceworker.js -o build/web/coi-serviceworker.js
           sed -i 's/<head>/<head><script src="coi-serviceworker.js"><\/script>/g' build/web/index.html
+          echo "✅ Vorbereitung erfolgreich abgeschlossen!"
 
       # 3. Artifact für GitHub Pages hochladen
       - name: Upload Pages Artifact
