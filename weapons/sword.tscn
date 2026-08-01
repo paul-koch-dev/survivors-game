@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bboto06ow81v8"]
+
+[ext_resource type="Script" uid="uid://cec4linrwi67b" path="res://weapons/sword.gd" id="1_swordscript"]
+[ext_resource type="Texture2D" uid="uid://bqq5pbbrxwpn2" path="res://weapons/sword.svg" id="2_swordsvg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_swordhitbox"]
+radius = 120.0
+
+[node name="Sword" type="Node2D" unique_id=328018309]
+script = ExtResource("1_swordscript")
+weapon_id = "sword"
+database = null
+show_debug_range = null
+debug_color = Color(0.94350123, 0.6050689, 0.82055956, 0.4)
+
+[node name="HitArea" type="Area2D" parent="." unique_id=1467893292]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1698133078]
+shape = SubResource("CircleShape2D_swordhitbox")
+
+[node name="SwordSprite" type="Sprite2D" parent="." unique_id=276338738]
+position = Vector2(40, 0)
+texture = ExtResource("2_swordsvg")

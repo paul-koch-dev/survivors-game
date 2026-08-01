@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponDatabase" format=3 uid="uid://ch21vtte2n5gn"]
+
+[ext_resource type="Script" uid="uid://n2iybt5jjhn6" path="res://weapons/weapon_database.gd" id="1_p5ios"]
+[ext_resource type="Script" uid="uid://ctadkhcdrc0qg" path="res://weapons/weapon_data.gd" id="2_ya6ax"]
+
+[sub_resource type="Resource" id="Resource_ueqf2"]
+script = ExtResource("2_ya6ax")
+base_range = 500.0
+
+[sub_resource type="Resource" id="Resource_jh32h"]
+script = ExtResource("2_ya6ax")
+id = "sword"
+weapon_name = "Sword"
+base_damage = 20.0
+base_attack_speed = 0.5
+
+[resource]
+script = ExtResource("1_p5ios")
+weapons = Array[ExtResource("2_ya6ax")]([SubResource("Resource_ueqf2"), SubResource("Resource_jh32h")])
+metadata/_custom_type_script = "uid://n2iybt5jjhn6"

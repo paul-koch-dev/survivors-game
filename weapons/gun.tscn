@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bgl64r2yotrru"]
+
+[ext_resource type="Script" uid="uid://h8oc6pdd4i5j" path="res://weapons/gun.gd" id="1_gunscript"]
+[ext_resource type="Texture2D" uid="uid://coon1w77o334i" path="res://pistol/pistol.png" id="2_pistoltex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ryr1"]
+radius = 446.77734
+
+[node name="Gun" type="Node2D" unique_id=1274799639]
+script = ExtResource("1_gunscript")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=992125519]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=650566296]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_0ryr1")
+
+[node name="WeaponPivot" type="Marker2D" parent="." unique_id=976330660]
+rotation = 0.06217406
+
+[node name="Pistol" type="Sprite2D" parent="WeaponPivot" unique_id=1045736386]
+position = Vector2(79.65901, -7.964924)
+rotation = -0.10070953
+scale = Vector2(1.1, 1.02)
+texture = ExtResource("2_pistoltex")
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/Pistol" unique_id=1397128607]
+position = Vector2(26.837841, -10.764105)

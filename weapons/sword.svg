@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Knauf (Pommel) -->
+  <circle cx="16" cy="64" r="8" fill="#FFD700" stroke="#B8860B" stroke-width="2"/>
+  
+  <!-- Griff (Grip) -->
+  <rect x="22" y="58" width="20" height="12" rx="3" fill="#8B4513" stroke="#5C2E0B" stroke-width="2"/>
+  <line x1="27" y1="58" x2="27" y2="70" stroke="#A0522D" stroke-width="2"/>
+  <line x1="33" y1="58" x2="33" y2="70" stroke="#A0522D" stroke-width="2"/>
+  <line x1="38" y1="58" x2="38" y2="70" stroke="#A0522D" stroke-width="2"/>
+
+  <!-- Parierstange (Crossguard) -->
+  <path d="M 40 38 C 42 64 42 64 40 90 C 48 92 48 92 48 84 L 48 44 C 48 36 48 36 40 38 Z" fill="#FFD700" stroke="#B8860B" stroke-width="2"/>
+  
+  <!-- Klinge (Blade Base & Tip) -->
+  <path d="M 48 52 L 105 54 L 122 64 L 105 74 L 48 76 Z" fill="#E6E8EA" stroke="#708090" stroke-width="2"/>
+  
+  <!-- Klingen-Lichtkante (Highlight) -->
+  <path d="M 48 53 L 105 55 L 120 64 L 48 64 Z" fill="#FFFFFF"/>
+  
+  <!-- Hohlkehle (Fuller) -->
+  <line x1="52" y1="64" x2="98" y2="64" stroke="#B0C4DE" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://y38gte5o0xf8"]
+
+[ext_resource type="Script" uid="uid://d07l5xwryn2cx" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="PackedScene" uid="uid://ogik4s70pgwl" path="res://characters/slime/slime.tscn" id="1_dy6sc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ryr1"]
+radius = 50.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0ryr1"]
+font_size = 23
+font_color = Color(0.7137255, 0.101960786, 0.2509804, 1)
+outline_size = 4
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.1, 0.1, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fill"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Mob" type="CharacterBody2D" unique_id=1031270817]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_nokgg")
+
+[node name="Slime" parent="." unique_id=2008890567 instance=ExtResource("1_dy6sc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=974854395]
+position = Vector2(-1, -30)
+shape = SubResource("CircleShape2D_0ryr1")
+
+[node name="LevelLabel" type="Label" parent="." unique_id=745000515]
+unique_name_in_owner = true
+offset_left = -30.0
+offset_top = -90.0
+offset_right = 30.0
+offset_bottom = -58.0
+text = "Lvl 1"
+label_settings = SubResource("LabelSettings_0ryr1")
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -40.0
+offset_top = 10.0
+offset_right = 40.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fill")
+value = 100.0
+show_percentage = false

@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://e35arcwynkod"]
+
+[ext_resource type="Script" uid="uid://ck31o6wbevvxc" path="res://stats.gd" id="1_qkx3n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ryr1"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8570658, 0.22920355, 0.32148686, 1)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3io"]
+bg_color = Color(0.9231765, 0.4069186, 0.49054766, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_armor"]
+font_size = 20
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp"]
+font_size = 14
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Stats" type="CanvasLayer" unique_id=1723293704]
+process_mode = 3
+script = ExtResource("1_qkx3n")
+
+[node name="TopLeftHUD" type="MarginContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 140.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="TopLeftHUD"]
+layout_mode = 2
+
+[node name="Padding" type="MarginContainer" parent="TopLeftHUD/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="StatsLabel" type="RichTextLabel" parent="TopLeftHUD/PanelContainer/Padding" unique_id=2107840915]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 80)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Time: 00:00
+Score: 0
+Kills: 0"
+fit_content = true
+
+[node name="TopRightPause" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -116.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="BtnPause" type="Button" parent="TopRightPause" unique_id=765271861]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Pause"
+
+[node name="BottomHUD" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -90.0
+offset_right = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="VBox" type="VBoxContainer" parent="BottomHUD"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ArmorLabel" type="Label" parent="BottomHUD/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "🛡️ Armor: 0"
+label_settings = SubResource("LabelSettings_armor")
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="BottomHUD/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0ryr1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ce3io")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="BottomHUD/VBox/HealthBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_hp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TopRightPause/BtnPause" to="." method="_on_btn_pause_pressed"]

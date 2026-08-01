@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://vk50tubkjkm1"]
+
+[ext_resource type="Texture2D" uid="uid://dk5b8a84a6n2h" path="res://characters/ground_shadow.png" id="1_nq3kg"]
+[ext_resource type="Script" uid="uid://b83ifp4yapypj" path="res://pinetree.gd" id="1_sblna"]
+[ext_resource type="Texture2D" uid="uid://bql1cc345qv7d" path="res://trees/pine_tree.png" id="2_sblna"]
+[ext_resource type="Texture2D" uid="uid://c873gsa1q48pu" path="res://trees/fruits/apple.png" id="4_gogv8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ryr1"]
+radius = 21.377558
+
+[node name="PineTree" type="StaticBody2D" unique_id=1419793063]
+collision_mask = 0
+script = ExtResource("1_sblna")
+
+[node name="GroundShadow" type="Sprite2D" parent="." unique_id=892213513]
+modulate = Color(0.5017358, 0.74165773, 0.75172776, 1)
+position = Vector2(3, 14)
+scale = Vector2(1.1666667, 0.96153855)
+texture = ExtResource("1_nq3kg")
+
+[node name="PineTree" type="Sprite2D" parent="." unique_id=25651315]
+position = Vector2(2, -48)
+texture = ExtResource("2_sblna")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1920351011]
+position = Vector2(4, 12)
+shape = SubResource("CircleShape2D_0ryr1")
+
+[node name="CollisonShapeFruit" type="CollisionShape2D" parent="." unique_id=1114483685]
+visible = false
+position = Vector2(8, 24)
+shape = SubResource("CircleShape2D_0ryr1")
+disabled = true
+debug_color = Color(0.6873274, 0.413886, 0.73190266, 0.41960785)
+
+[node name="Fruit" type="Sprite2D" parent="." unique_id=2015811086]
+visible = false
+position = Vector2(0, 15)
+scale = Vector2(2, 1.8125)
+texture = ExtResource("4_gogv8")

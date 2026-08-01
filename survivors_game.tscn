@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://swcb8q32cvqi"]
+
+[ext_resource type="PackedScene" uid="uid://c1sx7bic4uhdj" path="res://player.tscn" id="1_3cish"]
+[ext_resource type="Script" uid="uid://c1bfau31nfqio" path="res://survivors_game.gd" id="1_edxvn"]
+[ext_resource type="PackedScene" uid="uid://vk50tubkjkm1" path="res://pinetree.tscn" id="2_y3pti"]
+[ext_resource type="PackedScene" uid="uid://evqglio3istc" path="res://spawner/spawner.tscn" id="4_qqaft"]
+[ext_resource type="PackedScene" uid="uid://e35arcwynkod" path="res://stats.tscn" id="5_7jj1j"]
+[ext_resource type="PackedScene" uid="uid://bahj2kavbxsq3" path="res://level_up_menu.tscn" id="5_edxvn"]
+[ext_resource type="PackedScene" uid="uid://cc1un6dmohgfi" path="res://game_over_menu.tscn" id="7_pk6fm"]
+
+[node name="Game" type="Node2D" unique_id=1085836610]
+y_sort_enabled = true
+script = ExtResource("1_edxvn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=67450909]
+layer = -5
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1392243940]
+offset_right = 1923.0
+offset_bottom = 1084.0
+
+[node name="Player" parent="." unique_id=1881826686 instance=ExtResource("1_3cish")]
+position = Vector2(952, 514)
+
+[node name="PineTree" parent="." unique_id=1419793063 instance=ExtResource("2_y3pti")]
+position = Vector2(715, 799)
+
+[node name="PineTree4" parent="." unique_id=496014202 instance=ExtResource("2_y3pti")]
+position = Vector2(1153, 576)
+
+[node name="Spawner1" parent="." unique_id=1722435101 instance=ExtResource("4_qqaft")]
+position = Vector2(1609, 264)
+
+[node name="Stats" parent="." unique_id=1723293704 instance=ExtResource("5_7jj1j")]
+unique_name_in_owner = true
+process_mode = 0
+
+[node name="LevelUpMenu" parent="." unique_id=813059560 instance=ExtResource("5_edxvn")]
+unique_name_in_owner = true
+visible = false
+
+[node name="GameOverMenu" parent="." unique_id=1052441534 instance=ExtResource("7_pk6fm")]
+unique_name_in_owner = true
+visible = false

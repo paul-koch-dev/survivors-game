@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://bahj2kavbxsq3"]
+
+[ext_resource type="Script" path="res://level_up_menu.gd" id="1_pn0h5"]
+
+[node name="LevelUpMenu" type="CanvasLayer" unique_id=813059560]
+process_mode = 3
+script = ExtResource("1_pn0h5")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="MainLayout" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 24
+
+[node name="VBox" type="VBoxContainer" parent="MainLayout"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="MainLayout/VBox"]
+layout_mode = 2
+
+[node name="HeaderTitle" type="Label" parent="MainLayout/VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "🎉 LEVEL UP!"
+
+[node name="Spacer" type="Control" parent="MainLayout/VBox/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StonksDisplay" type="Label" parent="MainLayout/VBox/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "📈 Stonks: 0"
+
+[node name="HSeparator" type="HSeparator" parent="MainLayout/VBox"]
+layout_mode = 2
+
+[node name="Columns" type="HBoxContainer" parent="MainLayout/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="LeftPanel" type="PanelContainer" parent="MainLayout/VBox/Columns"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="MainLayout/VBox/Columns/LeftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainLayout/VBox/Columns/LeftPanel/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/VBox/Columns/LeftPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "📊 Spieler Stats"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainLayout/VBox/Columns/LeftPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="MainLayout/VBox/Columns/LeftPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsGrid" type="GridContainer" parent="MainLayout/VBox/Columns/LeftPanel/Margin/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="CenterPanel" type="VBoxContainer" parent="MainLayout/VBox/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="ShopTitle" type="Label" parent="MainLayout/VBox/Columns/CenterPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Wähle ein Upgrade:"
+horizontal_alignment = 1
+
+[node name="CardsContainer" type="HBoxContainer" parent="MainLayout/VBox/Columns/CenterPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RightPanel" type="PanelContainer" parent="MainLayout/VBox/Columns"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="MainLayout/VBox/Columns/RightPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainLayout/VBox/Columns/RightPanel/Margin"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MainLayout/VBox/Columns/RightPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "👾 Spawner Übersicht"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainLayout/VBox/Columns/RightPanel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="MainLayout/VBox/Columns/RightPanel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SpawnerList" type="VBoxContainer" parent="MainLayout/VBox/Columns/RightPanel/Margin/VBox/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Footer" type="HBoxContainer" parent="MainLayout/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BtnResume" type="Button" parent="MainLayout/VBox/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+text = "Weiter"
+
+[node name="BtnRestart" type="Button" parent="MainLayout/VBox/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+text = "Neustart"
+
+[node name="BtnQuit" type="Button" parent="MainLayout/VBox/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(140, 40)
+layout_mode = 2
+text = "Beenden"

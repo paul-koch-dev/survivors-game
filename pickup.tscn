@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bt1rhbctklkur"]
+
+[ext_resource type="Texture2D" uid="uid://c873gsa1q48pu" path="res://trees/fruits/apple.png" id="1_iqk3k"]
+[ext_resource type="Script" uid="uid://dt8kgq2r5rx82" path="res://pickup.gd" id="1_weqpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ryr1"]
+radius = 20.615528
+
+[node name="Pickup" type="Area2D" unique_id=253053608]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_weqpt")
+
+[node name="ItemSprite" type="Sprite2D" parent="." unique_id=761277698]
+position = Vector2(0, 1.000001)
+scale = Vector2(3.125, 2.875)
+texture = ExtResource("1_iqk3k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=855030676]
+shape = SubResource("CircleShape2D_0ryr1")

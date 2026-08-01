@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://c1sx7bic4uhdj"]
+
+[ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://yh2ao5or56lq" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cwvyms0nvtud0" path="res://weapons/weapon_manager.gd" id="2_wmscript"]
+[ext_resource type="PackedScene" uid="uid://bgl64r2yotrru" path="res://weapons/gun.tscn" id="3_gunscene"]
+[ext_resource type="PackedScene" uid="uid://bboto06ow81v8" path="res://weapons/sword.tscn" id="4_swordscene"]
+[ext_resource type="Resource" uid="uid://ch21vtte2n5gn" path="res://weapons/weapon_database.tres" id="6_2hs0m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ryr1"]
+radius = 37.054016
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pfd43"]
+radius = 39.0
+height = 124.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1881826686]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_onrkg")
+
+[node name="HappyBoo" parent="." unique_id=1091727253 instance=ExtResource("1_4flbx")]
+position = Vector2(-1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=252222000]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_0ryr1")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=237202770]
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1753813661]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=133443490]
+position = Vector2(-2, -32)
+shape = SubResource("CapsuleShape2D_pfd43")
+debug_color = Color(0.8197937, 0.27212325, 0.7478125, 0.41960785)
+
+[node name="WeaponManager" type="Node2D" parent="." unique_id=1102446038]
+position = Vector2(0, -48)
+script = ExtResource("2_wmscript")
+
+[node name="Gun" parent="WeaponManager" unique_id=978809304 instance=ExtResource("3_gunscene")]
+
+[node name="Sword" parent="WeaponManager" unique_id=1072889286 instance=ExtResource("4_swordscene")]
+database = ExtResource("6_2hs0m")
+show_debug_range = true

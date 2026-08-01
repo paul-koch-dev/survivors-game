@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://evqglio3istc"]
+
+[ext_resource type="Script" uid="uid://box8tfmqjnght" path="res://spawner/spawner.gd" id="1_ttk4a"]
+[ext_resource type="Texture2D" uid="uid://cudeafod1pai7" path="res://spawner/spawner.png" id="1_yp5lu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqaft"]
+radius = 52.55949
+
+[sub_resource type="LabelSettings" id="LabelSettings_ttk4a"]
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0.6869254, 0.21087089, 0.7340676, 1)
+
+[node name="Spawner1" type="StaticBody2D" unique_id=1856502890]
+collision_layer = 3
+script = ExtResource("1_ttk4a")
+
+[node name="Spawner" type="Sprite2D" parent="." unique_id=1033373452]
+position = Vector2(-1.0000038, 1)
+scale = Vector2(0.29885063, 0.29885063)
+texture = ExtResource("1_yp5lu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2037063232]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("CircleShape2D_qqaft")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1834521032]
+offset_left = -108.0
+offset_top = 55.0
+offset_right = 109.5
+offset_bottom = 82.0
+value = 21.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=38870692]
+offset_left = -58.0
+offset_top = -82.0
+offset_right = 26.0
+offset_bottom = -59.0
+text = "Level 3 "
+label_settings = SubResource("LabelSettings_ttk4a")
